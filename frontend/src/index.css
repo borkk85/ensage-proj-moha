@@ -1,0 +1,468 @@
+
+@font-face {
+  font-family: "aesthetnova-regular";
+  src: url("./fonts/aesthetnova_regular_macroman/aesthetnova-regular-webfont.woff2") format("woff2"),
+    url("./fonts/aesthetnova_regular_macroman/aesthetnova-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+  font-family: "aesthetnova-medium";
+  src: url("./fonts/aesthetnova_medium_macroman/aesthetnova-medium-webfont.woff2") format("woff2"),
+    url("./fonts/aesthetnova_medium_macroman/aesthetnova-medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+  font-family: "aesthetnova-light";
+  src: url("./fonts/aesthetnova_light_macroman/aesthetnova-light-webfont.woff2") format("woff2"),
+    url("./fonts/aesthetnova_light_macroman/aesthetnova-light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+  font-family: "aesthetnova-bold";
+  src: url("./fonts/aesthetnova_bold_macroman/aesthetnova-bold-webfont.woff2") format("woff2"),
+    url("./fonts/aesthetnova_bold_macroman/aesthetnova-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+  font-family: "aesthetnova-black";
+  src: url("./fonts/aesthetnova_black_macroman/aesthetnova-black-webfont.woff2") format("woff2"),
+    url("./fonts/aesthetnova_black_macroman/aesthetnova-black-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Primary color */
+  --main-background: #ffe4bf;
+  --icon-color: #99845b;
+  --pastel-blue: hsl(228, 100%, 84%);
+  --light-blue: hsl(206, 94%, 87%);
+  --strawberry-red: hsl(354, 84%, 57%);
+  /* Neutral color */
+  --cool-gray: hsl(231, 11%, 63%);
+  --light-gray: hsl(229, 24%, 87%);
+  --magnolia: hsl(217, 100%, 97%);
+  --alabaster: hsl(231, 100%, 99%);
+  --white: hsl(0, 0%, 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.1;
+  font-family: "aesthetnova-regular";
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 2.2;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--main-background);
+  background: linear-gradient(
+    180deg,
+    #f7f4f0 61.31%,
+    rgba(247, 244, 240, 0) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header {
+  font-family: "aesthetnova-regular";
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px ;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 60px;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 32px 64px;
+}
+
+.logo {
+  width: 80px;
+  height: 40px;
+}
+
+.dollar-vector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(153, 132, 91, 0.2);
+  border-radius: 24px;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(153, 132, 91, 0.2);
+  border-radius: 24px;
+}
+
+.line {
+  position: absolute;
+  height: 40%;
+  width: 2px;
+  border-radius: 2px;
+  background: #99845b;
+  animation: pulse 0.6s ease-in-out infinite;
+  transition: transform 0.6s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scaleY(1);
+  }
+  20% {
+    transform: scaleY(1.4);
+  }
+  40% {
+    transform: scaleY(1);
+  }
+}
+
+.line:first-child {
+  left: 16.5px;
+  height: 30%;
+  animation-delay: 0.3s;
+}
+
+.line:nth-child(2) {
+  right: 18px;
+  animation-delay: 0.2s;
+  height: 30%;
+}
+
+.line:last-child {
+  left: 21.6px;
+  animation-delay: 0.3s;
+}
+
+.hamburger-menu.animation .line {
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+.categories-container {
+  width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.uninspired-collection {
+  display: none;
+}
+
+.uninspired-collection.active {
+  display: block;
+}
+
+.uninspired {
+  display: none;
+}
+
+.uninspired.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ .uninspired > h2 {
+  font-family: "Aesthet Nova";
+  color: black;
+  width: 960px;
+  height: 96px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.uninspired > h2:nth-child(2) {
+  margin-bottom: 40px;
+}
+
+.uninspired > p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration-line: underline;
+  margin-top: 15px;
+}
+
+.browse-categories {
+  width: 620px;
+  height: 424px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+}
+
+.icon-circle {
+  width: 160px;
+  height: 160px;
+  border: 1px solid rgba(153, 132, 91, 0.2);
+  border-radius: 160px;
+}
+
+.emotions {
+  cursor: pointer;
+}
+
+.emotions > p {
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 64px 32px 32px;
+}
+
+.share-btn {
+    cursor: pointer;
+  padding: 8px 24px;
+  width: 200px;
+  height: 48px;
+  border: none;
+  background: #99845b;
+  border-radius: 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.arrow-left,
+.arrow-right {
+    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(153, 132, 91, 0.2);
+  border-radius: 24px;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 64px;
+  width: 282px;
+  height: 228px;
+}
+
+.social > p,
+.share > p {
+  font-family: "Aesthet Nova";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.social-icons,
+.download-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.social-icon-circle,
+.download-icon-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+}
+
+.popup-window.active {
+  display: flex;
+}
+
+.main.active {
+  background: rgba(102, 95, 82, 0.2);
+}
+
+.popup-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 64px;
+  width: 400px;
+  height: 536px;
+  box-shadow: 0px 64px 128px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 100;
+  display: none;
+}
+
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.header ul li {
+  margin-left: 20px;
+  
+}
+
+.header ul li a {
+  display: flex;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header ul li a:hover {
+  color: #777;
+}
+
+.header ul li a svg {
+  margin-right: 5px;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  padding: 0 20px;
+}
+
+.heading p {
+  color: #828282;
+}
+
+.form,
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+}
+
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn svg {
+  margin-right: 8px;
+}
+
+.btn-reverse {
+  background: #fff;
+  color: #000;
+}
+
+.btn-block {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}
