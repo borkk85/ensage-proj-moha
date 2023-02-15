@@ -80,17 +80,6 @@ li {
   align-items: center;
 }
 
-.header {
-  font-family: "aesthetnova-regular";
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px ;
-  border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
-}
-
 .header-container {
   width: 100%;
   display: flex;
@@ -186,26 +175,14 @@ img {
   gap: 40px;
 }
 
-.uninspired-collection {
-  display: none;
-}
-
-.uninspired-collection.active {
-  display: block;
-}
-
-.uninspired {
-  display: none;
-}
-
-.uninspired.active {
+.emotion {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
- .uninspired > h2 {
+ .emotion > h2 {
   font-family: "Aesthet Nova";
   color: black;
   width: 960px;
@@ -221,11 +198,11 @@ img {
   margin-top: 20px;
 }
 
-.uninspired > h2:nth-child(2) {
+.emotion > h2:nth-child(2) {
   margin-bottom: 40px;
 }
 
-.uninspired > p {
+.emotion > p {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -365,35 +342,6 @@ img {
   display: none;
 }
 
-.header ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  
-}
-
-.header ul li {
-  margin-left: 20px;
-  
-}
-
-.header ul li a {
-  display: flex;
-  align-items: center;
-  color: black;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.header ul li a:hover {
-  color: #777;
-}
-
-.header ul li a svg {
-  margin-right: 5px;
-}
-
 .heading {
   font-size: 2rem;
   font-weight: 700;
@@ -465,4 +413,53 @@ img {
 
 .btn:hover {
   transform: scale(0.98);
+}
+
+.admin {
+  font-family: "aesthetnova-regular";
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px ;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.admin-panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.header ul li {
+  margin-left: 20px;
+  
+}
+
+.header ul li a {
+  display: flex;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header ul li a:hover {
+  color: #777;
+}
+
+.header ul li a svg {
+  margin-right: 5px;
 }

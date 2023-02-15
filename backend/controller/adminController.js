@@ -1,5 +1,6 @@
-const bcrypt = require("bcrypt");
-const asyncHandler = require("express-async-handler");
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const asyncHandler = require('express-async-handler')
 const Admin = require("../model/adminModel");
 
 // Register new admin
@@ -16,6 +17,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
             name: admin.name,
             email: admin.email,
             role: admin.role,
+            token: generateToken(admin._id),
         })
     } else {
         res.status(400);
@@ -65,6 +67,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
       name: admin.name,
       email: admin.email,
       role: admin.role,
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
@@ -73,15 +76,17 @@ const registerAdmin = asyncHandler(async (req, res) => {
 });
 
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await Admin.findById(req.admin.id)
+  // const { _id, name, email } = await Admin.findById(req.admin.id)
 
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  res.status(200).json(req.user);
 
 });
+
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  })
+}
 
 module.exports = {
   registerAdmin,
