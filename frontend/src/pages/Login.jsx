@@ -17,9 +17,9 @@ const Login = () => {
 const { email, password } = formData
 
 const navigate = useNavigate();
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
 
-  const { admin, isLoading, isError, isSuccess, message } = useSelector(
+const { admin, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
 
@@ -36,7 +36,7 @@ const navigate = useNavigate();
 
     dispatch(reset())
 
-  }, [admin, isError, isSuccess, message, navigate, dispatch])
+  }, [admin, isError, isSuccess, message, navigate, dispatch], [])
 
 
 const onChange = (e) => {

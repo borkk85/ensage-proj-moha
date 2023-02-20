@@ -1,15 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CardForm from "../components/CardForm";
-import CardItem from "../components/CardItem";
 import Spinner from '../components/Spinner'
 import AdminHeader from "../components/AdminHeader";
 import { getCard, reset } from "../features/cards/cardSlice";
 
 
 const Admin = () => {
-  
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -17,23 +16,21 @@ const Admin = () => {
   const { cards, isLoading, isError, message } = useSelector(
     (state) => state.cards
   )
-
+    
   useEffect(() => {
     if (isError) {
       console.log(message)
-    }
-
-    if(!admin) {
-      navigate('/admin')
-    }
-
-    dispatch(getCard())
-
-    return () => {
+    } else {
       dispatch(reset())
     }
 
-  }, [admin, navigate, isError, message, dispatch] )
+    if(admin) {
+      dispatch(getCard())
+    } else {
+      navigate('/login')
+    }
+  
+  }, [admin, navigate, isError, message, dispatch], [] )
 
 
   if (isLoading) {
@@ -53,23 +50,9 @@ const Admin = () => {
       <p>Cards Modifier</p>
     </section>
     
-    {admin && <CardForm />}
 
-    <div className="main">
-        <div className="card-container">
-        {cards.length > 0 ? ( 
-          <div className="collection">
-                 
-            {cards.map((card) => (
-              <CardItem key={card._id$oid} card={card} />
-            ))}       
-        
-        </div>
-        ) : (
-          <h3>You have not set any cards</h3>
-          )}
-       </div>
-      </div>
+    <CardForm />
+      
     </>
     
   );

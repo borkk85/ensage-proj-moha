@@ -1,56 +1,45 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useNavigate } from "react";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import CardItem from "../components/CardItem";
 import Spinner from "../components/Spinner";
 import { getCard, reset } from "../features/cards/cardSlice";
+import HomeDisplay from "../components/HomeDisplay";
 
 const Cards = () => {
+  const { emotion } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { emotion } = useParams();
-
+  const { admin } = useSelector((state) => state.auth);
   const { cards, isLoading, isError, message } = useSelector(
     (state) => state.cards
   );
+  const emotionCard = cards.filter((card) => card.emotion === emotion);
 
-  useEffect(() => {
-    if (isError) {
-      console.error(message);
-    }
+  useEffect(
+    () => {
+      if (isError) {
+        console.log(message);
+      } else {
+        dispatch(reset());
+      }
 
-    dispatch(getCard());
-
-    return () => {
-      dispatch(reset());
-    };
-
-  }, [navigate, isError, message, dispatch]);
+      dispatch(getCard());
+    },
+    [navigate, isError, message, dispatch],
+    []
+  );
 
   if (isLoading) {
     return <Spinner />;
   }
 
-
+  if (!cards) {
+    return <Spinner />;
+  }
 
   return (
     <>
-      <div className="main">
-        <div className="card-container">
-          <div className="collection">
-            {cards.length > 0 ? (
-          <div className="emotion" id={emotion}>
-            {cards.map((card) => (
-              <CardItem key={card.emotion} card={card}/>
-            ))}         
-            </div>
-            ) : ( 
-              <h3>No cards available</h3>
-            )}
-          </div>
-          
-        </div>
-      </div>
+      <HomeDisplay cards={cards} selectedCard={emotion} />
     </>
   );
 };

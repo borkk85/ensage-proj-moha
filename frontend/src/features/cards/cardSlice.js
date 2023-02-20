@@ -27,12 +27,12 @@ export const createCard = createAsyncThunk(
   }
 );
 
-export const updateCard= createAsyncThunk(
-  "goals/update",
+export const updateCard = createAsyncThunk(
+  "cards/update",
   async (cardData, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await cardService.updateGoal(cardData, token);
+      const token = thunkAPI.getState().auth.admin.token;
+      return await cardService.updateCard(cardData, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -45,14 +45,11 @@ export const updateCard= createAsyncThunk(
   }
 );
 
-export const getCard = createAsyncThunk(
-  "cards/getAll",
-   async (_, thunkAPI) => {
+export const getCard = createAsyncThunk("cards/getAll", async (_, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.admin.token;
+    const token = thunkAPI.getState();
     // console.log(token)
-    return await cardService.getCard(token);
-    
+    return await cardService.getCard();
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -62,14 +59,47 @@ export const getCard = createAsyncThunk(
   }
 });
 
+export const deleteCard = createAsyncThunk(
+  "cards/delete",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.admin.token;
+      return await cardService.deleteCard(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const cardSlice = createSlice({
-  name: "card",
+  name: "cards",
   initialState,
   reducers: {
     reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder
+      .addCase(deleteCard.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.cards = state.cards.filter(
+          (card) => card._id !== action.payload.id
+        );
+      })
+      .addCase(deleteCard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
       .addCase(createCard.pending, (state) => {
         state.isLoading = true;
       })
@@ -89,7 +119,8 @@ export const cardSlice = createSlice({
       .addCase(updateCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.cards = [...state.cards.filter(card => card._id !== action.payload._id), action.payload]
+        state.cards = state.cards.filter((card) => card._id !== action.payload._id)
+        state.cards.push(action.payload)
       })
       .addCase(updateCard.rejected, (state, action) => {
         state.isLoading = false;

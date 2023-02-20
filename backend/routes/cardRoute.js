@@ -4,7 +4,7 @@ const { getCard, postCard, updateCard, deleteCard } =  require('../controller/ca
 const { protect } = require('../middleware/authMiddleware')
 
 
-router.route('/').get(protect, getCard).post(protect, postCard)
+router.route('/').get(getCard).post(protect, postCard)
 router.route('/:id').delete(protect, deleteCard).put(protect, updateCard)
 
 

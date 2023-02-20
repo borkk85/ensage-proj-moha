@@ -85,12 +85,12 @@ li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 32px 32px 64px;
+  padding:  25px 15px;
 }
 
-.logo {
-  width: 80px;
-  height: 40px;
+.logo img {
+  width: 100%;
+  height: 55px;
 }
 
 .dollar-vector {
@@ -175,12 +175,19 @@ img {
   gap: 40px;
 }
 
+.card-container {
+  width: 100%;
+  height: 70%;
+  margin-top: 0 auto;
+}
+
 .emotion {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding: 20px;
 }
+
 
  .emotion > h2 {
   font-family: "Aesthet Nova";
@@ -195,7 +202,6 @@ img {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 20px;
 }
 
 .emotion > h2:nth-child(2) {
@@ -211,6 +217,18 @@ img {
   margin-top: 15px;
 }
 
+.quotes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.quotes, img, h2, p {
+  padding: 10px;
+  margin: 10px;
+}
+
 .browse-categories {
   width: 620px;
   height: 424px;
@@ -223,6 +241,12 @@ img {
   gap: 40px;
 }
 
+.browse-categories, a {
+
+  list-style: none;
+  text-decoration: none;
+  
+}
 .icon-circle {
   width: 160px;
   height: 160px;
@@ -243,13 +267,12 @@ img {
 }
 
 .footer-container {
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  min-height: 20%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 64px 32px 32px;
+  padding: 25px 15px;
 }
 
 .share-btn {
@@ -316,9 +339,6 @@ img {
   border-radius: 40px;
 }
 
-.popup-window.active {
-  display: flex;
-}
 
 .main.active {
   background: rgba(102, 95, 82, 0.2);
@@ -339,7 +359,6 @@ img {
   transform: translate(-50%, -50%);
   background-color: white;
   z-index: 100;
-  display: none;
 }
 
 .heading {
@@ -356,7 +375,6 @@ img {
 .form,
 .content {
   width: 70%;
-  margin: 0 auto;
 }
 
 .form-group {
@@ -434,7 +452,14 @@ img {
   align-items: center;
 }
 
-
+.collection {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 150px;
+}
 
 .header ul {
   display: flex;

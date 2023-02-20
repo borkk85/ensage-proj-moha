@@ -33,15 +33,32 @@ const updateCard = async (cardData, token) => {
     },
   };
 
-  const response = await axios.get(API_URL + cardData._id, cardData, config);
-
+  const response = await axios.put(API_URL  + cardData._id, cardData, config);
+  console.log(response.data); 
   return response.data;
 };
+
+
+const deleteCard = async (cardId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.delete(API_URL + cardId, config);
+  
+  return response.data;
+};
+
+
+
 
 const cardService = {
   createCard,
   getCard,
-  updateCard
+  updateCard,
+  deleteCard
 };
 
 export default cardService;
